@@ -28,7 +28,7 @@
             $file        =  $json_data['file_name'];
             $file_path    =  "attachments/".$file;
 
-            if (file_exists($file_path)) 
+            if (file_exists($file_path) && !empty($file)) 
             {
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/octet-stream');
@@ -46,9 +46,6 @@
             }
 
         }
-
-        exit;
-
        
     }
 ?>
@@ -492,9 +489,9 @@ h1 {
                 <label class="form-label">Username    </label>
             </div>
             <div class="form-group">
-                <input type="text" name="pass" placeholder="Enter Your Password" class="form-control">
+                <input type="text" name="pass" id="pass" placeholder="Enter Your Password" class="form-control">
                 <label class="form-label">Password</label>
-                <p class="alert">Invalid Credentials..!!</p>
+                <p class="alert">Download Successful...!!!</p>
                 <button  type="submit" value="submit" class="btn">Login </button>
             </div>
         </form>

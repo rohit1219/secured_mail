@@ -7,7 +7,7 @@ http://localhost/secured_mail/admin.php
 username: admin
 password: admin
 
-#redisrects to 
+#redirects to 
 http://localhost/secured_mail/mail_form.php
 #where we can select attachment & insert mail_id whom to send
 

@@ -55,25 +55,39 @@
          file_put_contents($dirAccess.'/'.$json_file, $json);
       }
 
-      $message   =  "Hello, Thank You For Registering With xyz. Please Click The Following Link To Download Attachment: ".$base_url .$file_path;
+      // $message   =  "Hello, Thank You For Registering With xyz. Please Click The Following Link To Download Attachment: ".$base_url .$file_path;
 
       //send mail using php-pear
       include('Mail.php');
+      include('Mail/mime.php');
 
       $to = $user_mail;
 
-      $headers['MIME-Version'] = '1.0'; # . "\r\n";
+      $headers['MIME-Version'] = '1.10.2'; # . "\r\n";
       $headers['Content-type'] = 'text/html; charset=iso-8859-1'; #. "\r\n";
       $headers['To'] = $to;
       #$headers['To'] = $to2;
       $headers['From'] = '"care" <care@voztechlabs.com>';
       $headers['Reply-To'] = 'care@voztechlabs.com';
       $headers['Subject'] = "Test Mail";
+      $text = 'This is a text message.';// Text version of the email
+      $html = "<html><body><p>Hello Sir/Ma'am</p> Please <a href= ".$base_url .'click.php'.">click here</a> To Download The Attachment </body></html>";// HTML version of the email
+      $crlf = "\r\n";
+
+      // Creating the Mime message
+      $mime = new Mail_mime($crlf);
+
+      // Setting the body of the email
+      $mime->setTXTBody($text);
+      $mime->setHTMLBody($html);
+
+      $body = $mime->get();
+      $headers = $mime->headers($headers);
 
 
       $auth = array('host' => 'mail.voztechlabs.com', 'auth' => true, 'username' => 'care@voztechlabs.com', 'password' => 'care@voztechlabs');
       $smtp = Mail::factory('smtp', $auth);
-      $mail = $smtp->send($to, $headers, $message);
+      $mail = $smtp->send($to, $headers, $body);
 
       if (PEAR::isError($mail))
       echo('<p>PEAR mail: '.$mail->getMessage().'</p>');
@@ -97,3 +111,5 @@
       </form>
 
    </body>
+
+   

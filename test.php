@@ -1,5 +1,4 @@
 <?php
-phpinfo() ;
 
       // $to         =  $_POST['to'];
       // $subject    =  "My subject";

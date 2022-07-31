@@ -2,7 +2,6 @@
 
     if(isset($_POST['submit']))
     {    
-        echo
         /* Your password */
         $user = $_POST['username'];
         $pass = $_POST['password'];
@@ -47,11 +46,10 @@
 
     <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
 
-
-    <title>Admin Login </title>
+    <title>Liquify - Safest way to transfer your data</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Panel</title>
+   
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -216,7 +214,8 @@ label {
                         <i class="fa fa-key" aria-hidden="true"></i>
                     </div>
                     <div class="col-lg-12 login-title">
-                        ADMIN PANEL
+                        <p>LIQUIFY</p> 
+                        <small>Safest way to transfer your data</small>
                     </div>
 
                     <div class="col-lg-12 login-form">

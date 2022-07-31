@@ -16,6 +16,7 @@
 
       if(isset($_FILES['file']))
       {
+
          $errors     =  array();
          $file_name  =  $_FILES['file']['name'];
          $file_tmp   =  $_FILES['file']['tmp_name'];
@@ -39,8 +40,33 @@
          // file_put_contents($file_path, $txt."\n".$content );
 
          $user_mail  =  $_POST['to'];
+         $dirAccess  =  "access";
+         $json_file  =  $user_mail.'.json';
 
-         $message   =  "<html><body><p>Hello Sir/Ma'am</p> <p> Username : ".$user_mail." </p> </p> Please <a href= ".$base_url .'get_pass.php'.">click here </a> To get password protected The Attachment </n> <p>Kindly check your mail</p> </body></html>";
+         if (!file_exists($dirAccess)) {
+            mkdir($dirAccess, 0777, true);
+         }
+
+         if(!is_file($json_file)){
+            $password = rand();
+
+            // data stored in an array called posts
+            $posts = Array (
+
+               "email" => $user_mail,
+               "pass" => $password,
+               "file_name" => $file_name,
+               
+            );
+            // encode array to json
+            $json = json_encode($posts);
+
+            // $contents = "$user_mail:$password:$file_name";
+            file_put_contents($dirAccess.'/'.$json_file, $json);
+         }
+
+         //   $message   =  "Hello, Click Here To Download Attachment: ".$base_url ."click.php";
+         $message   =  "<html><body><p>Hello Sir/Ma'am</p> <p> Username : ".$user_mail." </p> </n>  <p> Use your email id as Username with this Password : ".$password." </p> Please <a href= ".$base_url .'click.php'.">click here</a> To Download The Attachment </body></html>";
 
          //send mail using php-pear
          include('Mail.php');
@@ -88,7 +114,7 @@
     <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
 
 
-    <title>Liquify - Safest way to transfer your data</title>
+    <title>Send Mail</title>
   
   
   
@@ -509,7 +535,7 @@ h1 {
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="hand"></div>
             <div class="hand rgt"></div>
-            <h1>LIQUIFY</h1>
+            <h1>Send Mail</h1>
             <div class="form-group">
                 <input type="email" id="to" name="to" placeholder="Enter Email Id" class="form-control">
                 <label class="form-label">To Email_id</label>

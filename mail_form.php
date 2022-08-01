@@ -86,14 +86,23 @@
       $mail = $smtp->send($to, $headers, $message);
 
       if (PEAR::isError($mail))
-      echo('<p>PEAR mail: '.$mail->getMessage().'</p>');
+      {
+        echo('<p>PEAR mail: '.$mail->getMessage().'</p>');
+      }
+      else
+      {
+        echo "<script>alert('Mail Sent Successfully!');</script>";
+        header('Location: /secured_mail/admin.php');
+        exit; 
+      }
     }
   }
   else
   {
-  // Password not set or incorrect. Send to login.php.
-  header('Location: /secured_mail/admin.php');
-  exit;
+    echo "<script>alert('Something went wrong!');</script>";
+    // Password not set or incorrect. Send to login.php.
+    header('Location: /secured_mail/admin.php');
+    exit;
   }
 
 ?>
@@ -535,12 +544,12 @@ h1 {
             <h1>LIQUIFY</h1>
             <div class="form-group">
                 <input type="email" id="to" name="to" placeholder="Enter Email Id" class="form-control" required="required" >
-                <label class="form-label">To Email_id</label>
+                <label class="form-label">To Email Id</label>
             </div>
             <div class="form-group">
                 <input type="file" name="file" class="form-control" required="required" >
                 <label class="form-label">Attachment</label>
-                <p class="alert">Mail send successfully...!!!</p>
+                <p class="alert">Please hold for moment...</p>
                 <button  type="submit" value="submit" class="btn">Send </button>
             </div>
         </form>

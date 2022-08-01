@@ -65,9 +65,15 @@
     $mail = $smtp->send($to, $headers, $message);
 
     if (PEAR::isError($mail))
-    echo('<p>PEAR mail: '.$mail->getMessage().'</p>');
+    {
+      echo('<p>PEAR mail: '.$mail->getMessage().'</p>');
+    }
     else
-    echo('<p>PEAR mail: Message successfully sent!</p>');
+    {
+      echo "<script>alert('Mail successfully sent with password, please check your mail!');</script>";
+      echo "<script>window.close();</script>";
+    }
+      
   }
 
 ?>

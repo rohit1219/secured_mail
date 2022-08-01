@@ -10,7 +10,7 @@
         $redirect_after_login = 'mail_form.php';
 
         /* Will not ask password again for */
-        $remember_password = strtotime('+15 seconds'); // +1 week 3 days 7 hours 5 seconds
+        $remember_password = strtotime('+120 seconds'); // +1 week 3 days 7 hours 5 seconds
 
         $accessFile = "access/admin.json";
 

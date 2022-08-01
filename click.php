@@ -42,7 +42,8 @@
                 flush();
                 readfile($file_path);
 
-                echo "File downloaded successfully";
+                echo "<script>alert('File downloaded Successfully!');</script>";
+                echo "<script>window.close();</script>";
             }
 
         }
